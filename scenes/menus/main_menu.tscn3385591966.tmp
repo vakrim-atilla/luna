@@ -81,5 +81,3 @@ texture_pressed = ExtResource("5_imvie")
 texture_hover = ExtResource("5_imvie")
 texture_disabled = ExtResource("5_imvie")
 texture_focused = ExtResource("5_imvie")
-
-[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

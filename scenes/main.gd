@@ -2,15 +2,19 @@ extends Node
 
 @export var SplashScreen: PackedScene
 @export var MainMenu: PackedScene
-@export var GameMenu: PackedScene
-@export var GameLevels: Array[PackedScene]
 
-signal scene_finished(next_scene: PackedScene)
+
 
 func _ready():
-	var scene = SplashScreen.instantiate()
-	add_child(scene)
-	pass
+	await run_scene(SplashScreen)
+	print("Splash Screen is gone")
+	await run_scene(MainMenu)
+	print("Bye bye!")
+	get_tree().quit()
 
-#func _on_scene_finished(next_scene: PackedScene):
-#	next_scene.instantiate().add_child()
+	
+
+func run_scene(packed_scene: PackedScene):
+	var scene = packed_scene.instantiate()
+	add_child.call_deferred(scene)
+	await(scene.child_exiting_tree)
