@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://beevnrt4jktnr"]
+[gd_scene load_steps=6 format=3 uid="uid://beevnrt4jktnr"]
+
+[ext_resource type="Texture2D" uid="uid://kjqxtj3x4hs2" path="res://assets/sprites/main menu/Game_Menu_scaled_no_letter.png" id="1_xqga4"]
+[ext_resource type="Texture2D" uid="uid://dfbyol1fdm2dr" path="res://assets/sprites/main menu/continue_atlas_texture.tres" id="2_2o76q"]
+[ext_resource type="Texture2D" uid="uid://bg2ursustd4qw" path="res://assets/sprites/main menu/new_game_atlas_texture.tres" id="3_6bivr"]
+[ext_resource type="Texture2D" uid="uid://dbka2phh0puwx" path="res://assets/sprites/main menu/options_atlas_texture.tres" id="4_6bivr"]
+[ext_resource type="Texture2D" uid="uid://rg5klixkjqw0" path="res://assets/sprites/main menu/quit_atlas_texture.tres" id="5_imvie"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +13,69 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackgroundPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBorderTexture" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_xqga4")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 85
+theme_override_constants/margin_right = 29
+theme_override_constants/margin_bottom = 65
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 54
+
+[node name="ContinueButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_2o76q")
+texture_pressed = ExtResource("2_2o76q")
+texture_hover = ExtResource("2_2o76q")
+texture_disabled = ExtResource("2_2o76q")
+texture_focused = ExtResource("2_2o76q")
+
+[node name="NewGameButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_6bivr")
+texture_pressed = ExtResource("3_6bivr")
+texture_hover = ExtResource("3_6bivr")
+texture_disabled = ExtResource("3_6bivr")
+texture_focused = ExtResource("3_6bivr")
+
+[node name="OptionsButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_6bivr")
+texture_pressed = ExtResource("4_6bivr")
+texture_hover = ExtResource("4_6bivr")
+texture_disabled = ExtResource("4_6bivr")
+texture_focused = ExtResource("4_6bivr")
+
+[node name="QuitButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_imvie")
+texture_pressed = ExtResource("5_imvie")
+texture_hover = ExtResource("5_imvie")
+texture_disabled = ExtResource("5_imvie")
+texture_focused = ExtResource("5_imvie")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b631v3a4l4i42"]
+[gd_scene load_steps=7 format=3 uid="uid://b631v3a4l4i42"]
 
 [ext_resource type="Texture2D" uid="uid://nbclaf8pmby2" path="res://assets/sprites/splash screen/Dark Gothic Splash_800.png" id="1_f7yun"]
+[ext_resource type="Script" uid="uid://3l87hvjmtdw" path="res://scenes/menus/splash_screen.gd" id="1_kw5io"]
 [ext_resource type="AudioStream" uid="uid://o6vakha0j6yo" path="res://assets/audio/bell2sec.mp3" id="2_mvpjh"]
 
 [sub_resource type="Animation" id="Animation_mvpjh"]
@@ -73,6 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_kw5io")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
