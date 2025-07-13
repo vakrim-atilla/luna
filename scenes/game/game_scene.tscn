@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://dqvvy6ytdpeow"]
+[gd_scene load_steps=3 format=4 uid="uid://dqvvy6ytdpeow"]
 
 [ext_resource type="TileSet" uid="uid://c71tncyk4w6u1" path="res://assets/tiles/Dungeon Tile Set/dungeon_tileset.tres" id="1_5xmm1"]
+[ext_resource type="PackedScene" uid="uid://byodbcp81tsei" path="res://scenes/player/player.tscn" id="1_omorx"]
 
 [node name="GameScene" type="Node"]
 
@@ -15,3 +16,6 @@ tile_set = ExtResource("1_5xmm1")
 [node name="MainLayer" type="TileMapLayer" parent="Level"]
 tile_map_data = PackedByteArray("AAABAAoAAAANAAoAAAABAAsAAAANAAsAAAAEAAkAAAAHAAkAAAAFAAkAAAAHAAkAAAAGAAkAAAAHAAkAAAAHAAkAAAAHAAkAAAAGAAgAAAAMAAkAAAA=")
 tile_set = ExtResource("1_5xmm1")
+
+[node name="Player" parent="Level/MainLayer" instance=ExtResource("1_omorx")]
+position = Vector2(92, 116)

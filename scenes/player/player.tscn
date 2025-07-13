@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://by1jvv5va33h4" path="res://assets/sprites/characters/Warrior SpriteSheet/Warrior_Sheet-Effect.png" id="2_dovo2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
-size = Vector2(22, 44)
+size = Vector2(17, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
 atlas = ExtResource("2_dovo2")
@@ -353,7 +353,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"climb",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -549,12 +549,15 @@ animations = [{
 script = ExtResource("1_75vfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(28, 30)
+position = Vector2(-7, -19)
 shape = SubResource("RectangleShape2D_dovo2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(36, 25)
+position = Vector2(1, -22)
 sprite_frames = SubResource("SpriteFrames_hyqqp")
-animation = &"attack1"
+animation = &"edge_idle"
+frame_progress = 0.222353
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

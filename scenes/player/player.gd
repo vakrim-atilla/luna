@@ -10,7 +10,7 @@ var is_climbing = false
 #movement and physics
 func _physics_process(delta):
 	# vertical movement velocity (down)
-	#velocity.y += gravity * delta
+	velocity.y += gravity * delta
 	# horizontal movement processing (left, right)
 	horizontal_movement()
 	
@@ -40,7 +40,7 @@ func _input(event):
 	#on climbing ladders
 	if is_climbing == true:
 		if Input.is_action_pressed("ui_up"):
-			$AnimatedSprite2D.play("climb") 
+			$AnimatedSpriteD.play("climb") 
 			gravity = 100
 			velocity.y = -200
 	#reset gravity
