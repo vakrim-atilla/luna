@@ -1,7 +1,8 @@
-[gd_scene load_steps=73 format=3 uid="uid://byodbcp81tsei"]
+[gd_scene load_steps=74 format=3 uid="uid://byodbcp81tsei"]
 
 [ext_resource type="Script" uid="uid://bnp5e7fmrwq8d" path="res://scenes/player/player.gd" id="1_75vfm"]
 [ext_resource type="Texture2D" uid="uid://by1jvv5va33h4" path="res://assets/sprites/characters/Warrior SpriteSheet/Warrior_Sheet-Effect.png" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://oqopieevqvuw" path="res://scenes/player/camera_2d.gd" id="3_gmlin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(17, 35)
@@ -559,5 +560,7 @@ animation = &"edge_idle"
 frame_progress = 0.222353
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_gmlin")
+target_path = NodePath("..")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
