@@ -20,6 +20,7 @@ var _look_ahead_offset: Vector2 = Vector2.ZERO
 var _target_last_position: Vector2 = Vector2.ZERO
 var _level_bounds: Rect2 = Rect2()
 
+
 func _ready():
 	_target = get_node_or_null(target_path)
 	if not _target:
@@ -36,6 +37,11 @@ func _ready():
 	var bounds_node = get_tree().get_current_scene()
 	if bounds_node:
 		_level_bounds = _compute_bounds_from_tilemap_layers(bounds_node)
+		print("Computed level bound:", _level_bounds)
+		limit_left   = int(_level_bounds.position.x)
+		limit_top    = int(_level_bounds.position.y)
+		limit_right  = int(_level_bounds.position.x + _level_bounds.size.x)
+		limit_bottom = int(_level_bounds.position.y + _level_bounds.size.y)
 	else:
 		push_warning("Boundary node not found.")
 
@@ -52,38 +58,39 @@ func _process(delta):
 	else:
 		_look_ahead_offset = Vector2.ZERO
 
-	# Calculate desired camera position
+
 	var desired_position = _target.global_position + Vector2(0, vertical_offset) + _look_ahead_offset
-	global_position = global_position.lerp(desired_position, delta * follow_speed)
+	var smoothed_position = global_position.lerp(desired_position, delta * follow_speed)
 
-	# Clamp to level bounds if defined
-	if _level_bounds.size != Vector2.ZERO:
-		var half_screen = get_viewport_rect().size * 0.5 / zoom
-		desired_position = desired_position.clamp(
-			_level_bounds.position + half_screen,
-			_level_bounds.position + _level_bounds.size - half_screen
-		)
-	global_position = global_position.lerp(desired_position, delta * follow_speed)
-
-	# Optionally: snap to integer pixel (great for pixel art games)
-	global_position = global_position.round()
+	global_position = smoothed_position
 
 	# Smooth zoom (optional)
 	zoom = zoom.lerp(zoom_amount, delta * zoom_speed)
 	_target_last_position = _target.global_position
+	
 
-func _compute_bounds_from_tilemap_layers(root_node: Node) -> Rect2:
-	var rect = Rect2()
+	
+func _compute_bounds_from_tilemap_layers(root_node: Node) -> Rect2i:
+	var rect = null
 	for tilemap in get_all_nodes_of_type(root_node, "TileMapLayer"):
 		if tilemap is TileMapLayer:
 			var used = tilemap.get_used_rect()
+			print("For tilemap:", tilemap)
+			print("used tilemap rect: ", used)
 			var cell_size = tilemap.tile_set.tile_size
-			var local_rect = Rect2(
-				tilemap.map_to_local(used.position),
+			var local_rect = Rect2i(
+				used.position * cell_size,
 				used.size * cell_size
 			)
-			var global_rect = Rect2(tilemap.to_global(local_rect.position), local_rect.size)
-			rect = rect.merge(global_rect)
+			print("used local rect: ", local_rect)
+			var global_rect = Rect2i(tilemap.to_global(local_rect.position), local_rect.size)
+			print("Global rect", global_rect)
+			if rect: 
+				rect = rect.merge(global_rect)
+			else:
+				rect = global_rect
+			
+	print("Calculated rect:", rect)
 	return rect.grow_individual(extra_margin.x, extra_margin.y, extra_margin.x, extra_margin.y)
 
 	

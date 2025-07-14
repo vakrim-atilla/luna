@@ -548,6 +548,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_75vfm")
+jump_height = -200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, -19)
@@ -562,6 +563,8 @@ frame_progress = 0.222353
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_gmlin")
 target_path = NodePath("..")
-zoom_amount = Vector2(5, 5)
+follow_speed = 4.0
+look_ahead_smoothness = 2.0
+zoom_amount = Vector2(4, 4)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
